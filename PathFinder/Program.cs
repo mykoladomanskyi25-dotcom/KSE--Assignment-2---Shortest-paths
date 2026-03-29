@@ -5,9 +5,9 @@ var optionsToGenerate = new MapGeneratorOptions()
 {
     Height = 10,
     Width = 100,
-    //Noise = 0.3f 
+    Noise = 0.3f,
     AddTraffic = true,
-    
+    TrafficSeed = 1234
 };
 
 var generator = new MapGenerator(optionsToGenerate);
