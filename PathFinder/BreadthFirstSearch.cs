@@ -7,7 +7,7 @@ public class BreadthFirstSearch : IPathFinder
     public (List<Point>, int) FindPath(string[,] map, Point start, Point destination)
     {
         var queue = new Queue<Point>();
-        var visited = new List<Point>();
+        var visited = new List<Point>();//Dictionary
         var origins = new Dictionary<Point, Point>();
         
         queue.Enqueue(start);
@@ -18,7 +18,7 @@ public class BreadthFirstSearch : IPathFinder
             var current = queue.Dequeue();
             
             var neighbours = MapGenerator.GetNeighbours(current.Column, current.Row, map, 1,true);
-
+    
             neighbours.Reverse();
             
             foreach (var neighbour in neighbours)
@@ -50,4 +50,6 @@ public class BreadthFirstSearch : IPathFinder
         return (path, visited.Count + 1);
         
     }
+    
+    
 }

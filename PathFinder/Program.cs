@@ -7,7 +7,7 @@ var optionsToGenerate = new MapGeneratorOptions()
     Width = 100,
     Noise = 0.5f,
     AddTraffic = true,
-    TrafficSeed = 1234
+    //TrafficSeed = 1234
 };
 
 var generator = new MapGenerator(optionsToGenerate);
@@ -22,28 +22,28 @@ var (path, nodesVisited) = bfs.FindPath(map!, start, destination);
 
 new MapPrinter().Print(map, path);
 
-double totaltime = 0;
-foreach (var p in path)
-{
-    if (p.Equals(start)) continue;
-    string cell = map[p.Column, p.Row];
+// double totaltime = 0;
+// foreach (var p in path)
+// {
+//     if (p.Equals(start)) continue;
+//     string cell = map[p.Column, p.Row];
+//
+//     int n;
+//     if (cell.Equals(" "))
+//     {
+//         n = 1;
+//     }
+//     else
+//     {
+//         n = int.Parse(cell);
+//     }
+//
+//     double v = 60.0 - (n - 1.0) * 6.0;
+//     double t = 1.0 / v;
+//     totaltime = totaltime + t;
+// }
 
-    int n;
-    if (cell.Equals(" "))
-    {
-        n = 1;
-    }
-    else
-    {
-        n = int.Parse(cell);
-    }
-
-    double v = 60.0 - (n - 1.0) * 6.0;
-    double t = 1.0 / v;
-    totaltime = totaltime + t;
-}
-
-Console.WriteLine($"Total time: {totaltime:F2}");
+// Console.WriteLine($"Total time: {totaltime:F2}");
 
 Console.WriteLine($"\nNodes Visited: {nodesVisited}");
 Console.WriteLine($"Path length: {path.Count}");

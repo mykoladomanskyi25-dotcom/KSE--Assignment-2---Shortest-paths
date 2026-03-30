@@ -27,11 +27,11 @@ public class MapPrinter
                 Point currentPoint = new Point(column, row);
                 if (currentPoint.Equals(path[0]))
                 {
-                    Console.Write("A");
+                    Console.Write("B");
                 }
                 else if (currentPoint.Equals(path[path.Count - 1]))
                 {
-                    Console.Write("B");
+                    Console.Write("A");
                 }
                 else if (path.Contains(currentPoint))
                 {

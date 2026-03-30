@@ -49,7 +49,7 @@ public class PathFinderTests
     public void TestDijkstraUnweighted()
     {
         // Replace this with your actual implementation of Dijkstra
-        var dijkstra = new Dijkstra();
+        var dijkstra = new DijkstraShortestPath();
         var (shortestPath, nodesVisited) = dijkstra.FindPath(_map!, _start, _destination);
 
         var expectedPath = Paths.DijkstraPathUnweighted;

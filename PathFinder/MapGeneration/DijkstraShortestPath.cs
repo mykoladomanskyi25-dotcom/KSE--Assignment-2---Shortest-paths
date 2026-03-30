@@ -5,7 +5,8 @@ public class DijkstraShortestPath : IPathFinder
     public (List<Point>, int) FindPath(string[,] map, Point start, Point destination)
     {
         var queue = new PriorityQueue();
-        var costs = new Dictionary<Point, double>();
+        var visited = new List<Point>();
+        var costs = new Dictionary<Point, int>();
         var origins = new Dictionary<Point, Point>();
         
         queue.Enqueue(start, 0);
@@ -14,35 +15,61 @@ public class DijkstraShortestPath : IPathFinder
         while (queue.Count > 0)
         {
             var current = queue.Dequeue();
+
+            if (visited.Contains(current))
+            {
+                continue;
+            }
+            visited.Add(current);
             
             var neighbours = MapGenerator.GetNeighbours(current.Column, current.Row, map, 1,true);
 
-            neighbours.Reverse();
+            
+            
+            //neighbours.Reverse();
             
             foreach (var neighbour in neighbours)
             {
-                string cell = map[neighbour.Column, neighbour.Row];
-
-                int n;
-                if (cell.Equals(" "))
+                if (!costs.ContainsKey(neighbour))
                 {
-                    n = 1;
+                    costs.Add(neighbour, int.MaxValue);
                 }
-                else
+                int edgeCost = GetCost(current, neighbour, map);
+                if (costs[neighbour] > costs[current] + edgeCost)
                 {
-                    n = int.Parse(cell);
-                }
-
-                double v = 60.0 - (n - 1.0) * 6.0;
-                double t = 1.0 / v;
-                double newtime = costs[current] + t;
-
-                if (!costs.ContainsKey(neighbour) || newtime < costs[neighbour] )
-                {
-                    costs[neighbour] = newtime;
+                    costs[neighbour] = costs[current] + edgeCost;
                     origins[neighbour] = current;
-                    queue.Enqueue(neighbour, newtime);
+                    queue.Enqueue(neighbour, costs[neighbour]);
                 }
+                
+                
+                
+                
+                
+                
+                
+                // string cell = map[neighbour.Column, neighbour.Row];
+                //
+                // int n;
+                // if (cell.Equals(" "))
+                // {
+                //     n = 1;
+                // }
+                // else
+                // {
+                //     n = int.Parse(cell);
+                // }
+                //
+                // double v = 60.0 - (n - 1.0) * 6.0;
+                // double t = 1.0 / v;
+                // double newtime = costs[current] + t;
+
+                // if (!costs.ContainsKey(neighbour) || newtime < costs[neighbour] )
+                // {
+                //     costs[neighbour] = newtime;
+                //     origins[neighbour] = current;
+                //     queue.Enqueue(neighbour, newtime);
+                // }
             }
             
             if (current.Equals(destination))
@@ -62,5 +89,16 @@ public class DijkstraShortestPath : IPathFinder
         }
         path.Add(start);
         return (path, costs.Count);
+        
+    }
+
+    private int GetCost(Point start, Point destination, string[,] map)
+    {
+        if (map[destination.Column, destination.Row] == " ")
+            return 1;
+        if (map[start.Column, start.Row] == "█")
+            return int.MaxValue;
+
+        return int.Parse(map[destination.Column, destination.Row]);
     }
 }
