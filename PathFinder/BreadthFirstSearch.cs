@@ -4,52 +4,55 @@ namespace PathFinder;
 
 public class BreadthFirstSearch : IPathFinder
 {
+    
+
     public (List<Point>, int) FindPath(string[,] map, Point start, Point destination)
     {
-        var queue = new Queue<Point>();
-        var visited = new List<Point>();//Dictionary
-        var origins = new Dictionary<Point, Point>();
-        
-        queue.Enqueue(start);
-        visited.Add(start);
-        
-        while (queue.Count > 0)
-        {
-            var current = queue.Dequeue();
+            var queue = new Queue<Point>();
+            var visited = new List<Point>();//Dictionary
+            var origins = new Dictionary<Point, Point>();
             
-            var neighbours = MapGenerator.GetNeighbours(current.Column, current.Row, map, 1,true);
-    
-            neighbours.Reverse();
+            queue.Enqueue(start);
+            visited.Add(start);
             
-            foreach (var neighbour in neighbours)
+            
+            while (queue.Count > 0)
             {
-                if (!visited.Contains(neighbour))
+                
+                var current = queue.Dequeue();
+                
+                var neighbours = MapGenerator.GetNeighbours(current.Column, current.Row, map, 1,true);
+            
+                //neighbours.Reverse();
+                
+                foreach (var neighbour in neighbours)
                 {
-                    visited.Add(neighbour);
-                    origins[neighbour] = current;
-                    queue.Enqueue(neighbour);
+                    if (!visited.Contains(neighbour))
+                    {
+                        visited.Add(neighbour);
+                        origins[neighbour] = current;
+                        queue.Enqueue(neighbour);
+                    }
                 }
+                
+                if (current.Equals(destination))
+                {
+                    break; 
+                }
+                
             }
             
-            if (current.Equals(destination))
+            var path = new List<Point>();
+            var currentPathPoint = destination;
+                
+            while (!currentPathPoint.Equals(start))
             {
-                break; 
+                path.Add(currentPathPoint);
+                currentPathPoint = origins[currentPathPoint];
             }
             
-        }
-        
-        var path = new List<Point>();
-        var currentPathPoint = destination;
-            
-        while (!currentPathPoint.Equals(start))
-        {
-            path.Add(currentPathPoint);
-            currentPathPoint = origins[currentPathPoint];
-        }
-        path.Add(start);
-        return (path, visited.Count + 1);
-        
+            path.Add(start);
+            return (path, origins.Count);
+
     }
-    
-    
 }

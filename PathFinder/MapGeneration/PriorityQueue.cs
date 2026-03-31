@@ -68,34 +68,4 @@ public class PriorityQueue
         }
         return bestElement.Item;
     }
-
-
-
-
-
-
-
-
-
-
-    // public void Enqueue(Point point, double priority)
-    // {
-    //     _elements.Add((point, priority));
-    // }
-
-    // public Point Dequeue()
-    // {
-    //     int bestIndex = 0;
-    //     for (int i = 1; i < _elements.Count; i++)
-    //     {
-    //         if (_elements[i].Priority <= _elements[bestIndex].Priority)
-    //         {
-    //             bestIndex = i;
-    //         }
-    //     }
-    //
-    //     Point bestPoint = _elements[bestIndex].Item;
-    //     _elements.RemoveAt(bestIndex);
-    //     return bestPoint;
-    // }
 }

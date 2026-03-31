@@ -1,7 +1,13 @@
 ﻿namespace PathFinder.MapGeneration;
 
-public class DijkstraShortestPath : IPathFinder
+public class AStarWeighted : IPathFinder
 {
+    private int Heuristics(Point start, Point destination, string[,] map)
+    {
+        int distance = Math.Abs(start.Column - destination.Column) + Math.Abs(start.Row - destination.Row);
+        return distance;
+    }
+    
     private int GetCost(Point start, Point destination, string[,] map)
     {
         if (map[destination.Column, destination.Row] == " ")
@@ -51,7 +57,7 @@ public class DijkstraShortestPath : IPathFinder
                 
                 int edgeCost = GetCost(current, neighbour, map);
                 
-                if (costs[neighbour] > costs[current] + edgeCost)
+                if (costs[neighbour] > costs[current] + edgeCost && )
                 {
                     costs[neighbour] = costs[current] + edgeCost;
                     origins[neighbour] = current;
@@ -74,8 +80,5 @@ public class DijkstraShortestPath : IPathFinder
         }
         path.Add(start);
         return (path, costs.Count);
-        
     }
-
-    
 }

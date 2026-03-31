@@ -65,9 +65,9 @@ public class PathFinderTests
         // Replace this with your actual implementation of AStar
         var aStar = new AStar();
         var (shortestPath, nodesVisited) = aStar.FindPath(_map!, _start, _destination);
-
+        
         var expectedPath = Paths.AStarPathUnweighted;
-
+        
         Assert.That(nodesVisited, Is.EqualTo(111));
         Assert.That(shortestPath, Is.EqualTo(expectedPath).AsCollection);
     }
