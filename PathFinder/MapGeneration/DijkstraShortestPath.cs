@@ -25,8 +25,6 @@ public class DijkstraShortestPath : IPathFinder
         
         while (queue.Count > 0)
         {
-            
-            
             var current = queue.Dequeue();
 
             if (current.Equals(destination))

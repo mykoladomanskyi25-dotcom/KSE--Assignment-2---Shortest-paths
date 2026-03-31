@@ -35,11 +35,11 @@ public class MapPrinter
                 }
                 else if (path.Contains(currentPoint))
                 {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.Write(maze[column, row]);
-                    Console.ResetColor();
+                    // Console.ForegroundColor = ConsoleColor.Green;
+                    // Console.Write(maze[column, row]);
+                    // Console.ResetColor();
 
-                    //Console.Write(".");
+                    Console.Write(".");
                 }
                 else
                 {

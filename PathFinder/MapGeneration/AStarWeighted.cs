@@ -31,8 +31,6 @@ public class AStarWeighted : IPathFinder
         
         while (queue.Count > 0)
         {
-            
-            
             var current = queue.Dequeue();
 
             if (current.Equals(destination))
@@ -56,18 +54,17 @@ public class AStarWeighted : IPathFinder
                 }
                 
                 int edgeCost = GetCost(current, neighbour, map);
+                int heuristicsFunction = Heuristics(neighbour, destination, map);
                 
-                if (costs[neighbour] > costs[current] + edgeCost && )
+                if (costs[neighbour] > costs[current] + edgeCost)
                 {
                     costs[neighbour] = costs[current] + edgeCost;
                     origins[neighbour] = current;
-                    queue.Enqueue(neighbour, costs[neighbour]);
+                    int priority = costs[current] + edgeCost + heuristicsFunction;
+                    queue.Enqueue(neighbour, priority);
                 }
                 
             }
-            
-            
-            
         }
         
         var path = new List<Point>();

@@ -50,7 +50,7 @@ public class PathFinderTrafficTests
     public void TestAStarWeighted()
     {
         // Replace this with your actual implementation of AStar
-        var aStar = new AStar();
+        var aStar = new AStarWeighted();
         var (shortestPath, nodesVisited) = aStar.FindPath(_map!, _start, _destination);
     
         var expectedPath = Paths.AStarPathWeighted;
