@@ -14,6 +14,7 @@ public class BreadthFirstSearch : IPathFinder
             visited.Add(start);
             
             
+            
             while (queue.Count > 0)
             {
                 var current = queue.Dequeue();

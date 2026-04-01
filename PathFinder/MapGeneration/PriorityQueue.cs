@@ -2,8 +2,12 @@
 
 public class PriorityQueue
 {
-    private List<(Point Item, double Priority)> _elements = new();
-    public int Count => _elements.Count;
+    private List<(Point Item, int Priority)> _elements = new();
+
+    public int GetCount()
+    {
+        return _elements.Count;       
+    } 
 
     private int GetParentIndex(int i) => (i - 1) / 2;
     private int GetLeftChildIndex(int i) => i * 2 + 1;
