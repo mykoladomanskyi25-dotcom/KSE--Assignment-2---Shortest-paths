@@ -2,31 +2,6 @@
 using PathFinder.MapGeneration;
 
 
-
-int CountSpaces(string[,] arr)
-    {
-        int count = 0;
-
-        for (int i = 0; i < arr.GetLength(0); i++)
-        {
-            for (int j = 0; j < arr.GetLength(1); j++)
-            {
-                string s = arr[i, j];
-
-                if (s != null)
-                {
-                    foreach (char c in s)
-                    {
-                        if (c == ' ')
-                            count++;
-                    }
-                }
-            }
-        }
-
-        return count;
-    }
-
 var optionsToGenerate = new MapGeneratorOptions()
 {
     Height = 20,
@@ -45,8 +20,8 @@ var generator = new MapGenerator(optionsToGenerate);
 string[,]? map = generator.Generate();
 
 var start = new Point(0,0);
-var destination = new Point(18,18);
-//var destination = new Point(optionsToGenerate.Width - 2,optionsToGenerate.Height - 2);
+//var destination = new Point(18,18);
+var destination = new Point(optionsToGenerate.Width - 2,optionsToGenerate.Height - 2);
 
 var bfs = new BreadthFirstSearch();
 var (path, nodesVisited) = bfs.FindPath(map!, start, destination);
@@ -187,4 +162,3 @@ Console.WriteLine($"Total time: {totaltime:F2}");
 Console.WriteLine($"\nNodes Visited: {nodesVisited}");
 Console.WriteLine($"Path length: {path.Count}");
 
-Console.WriteLine(CountSpaces(map));

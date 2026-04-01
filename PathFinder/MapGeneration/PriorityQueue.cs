@@ -16,7 +16,7 @@ public class PriorityQueue
         _elements[index2] = temp;
     }
 
-    public void Enqueue(Point point, double priority)
+    public void Enqueue(Point point, int priority)
     {
         _elements.Add((point, priority));
         var surfaces =  _elements.Count - 1;

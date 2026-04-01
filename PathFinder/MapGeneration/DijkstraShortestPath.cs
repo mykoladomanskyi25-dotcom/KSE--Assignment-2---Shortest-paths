@@ -57,9 +57,6 @@ public class DijkstraShortestPath : IPathFinder
                 }
                 
             }
-            
-            
-            
         }
         
         var path = new List<Point>();

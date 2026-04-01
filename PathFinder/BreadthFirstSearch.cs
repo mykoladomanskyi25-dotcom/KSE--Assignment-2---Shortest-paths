@@ -4,12 +4,10 @@ namespace PathFinder;
 
 public class BreadthFirstSearch : IPathFinder
 {
-    
-
     public (List<Point>, int) FindPath(string[,] map, Point start, Point destination)
     {
             var queue = new Queue<Point>();
-            var visited = new List<Point>();//Dictionary
+            var visited = new List<Point>();
             var origins = new Dictionary<Point, Point>();
             
             queue.Enqueue(start);
@@ -22,17 +20,10 @@ public class BreadthFirstSearch : IPathFinder
                 
                 if (current.Equals(destination))
                 {
-                    if (!visited.Contains(current))
-                        visited.Add(current);
-                    
                     break; 
                 }
                 
                 var neighbours = MapGenerator.GetNeighbours(current.Column, current.Row, map, 1,true);
-                for (int i = 0; i < neighbours.Count; i++)
-                {
-                    Point neighbour = neighbours[i];
-                }
                 
                 foreach (var neighbour in neighbours)
                 {
@@ -57,10 +48,5 @@ public class BreadthFirstSearch : IPathFinder
             path.Add(start);
             return (path, visited.Count);
             
-            
-            
-
     }
-    
-    
 }
