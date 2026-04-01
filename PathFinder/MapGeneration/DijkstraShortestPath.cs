@@ -23,7 +23,7 @@ public class DijkstraShortestPath : IPathFinder
         costs[start] = 0;
         
         
-        while (queue.Count > 0)
+        while (queue.GetCount() > 0)
         {
             var current = queue.Dequeue();
 
