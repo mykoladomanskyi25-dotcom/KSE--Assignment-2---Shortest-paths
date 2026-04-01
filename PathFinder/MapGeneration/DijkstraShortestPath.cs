@@ -36,6 +36,7 @@ public class DijkstraShortestPath : IPathFinder
             {
                 continue;
             }
+            
             visited.Add(current);
             
             var neighbours = MapGenerator.GetNeighbours(current.Column, current.Row, map, 1,true);

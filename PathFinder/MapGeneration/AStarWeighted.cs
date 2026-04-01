@@ -4,8 +4,8 @@ public class AStarWeighted : IPathFinder
 {
     private int Heuristics(Point start, Point destination, string[,] map)
     {
-        int distance = Math.Abs(start.Column - destination.Column) + Math.Abs(start.Row - destination.Row);
-        return distance;
+        int distances = Math.Abs(start.Column - destination.Column) + Math.Abs(start.Row - destination.Row);
+        return distances;
     }
     
     private int GetCost(Point start, Point destination, string[,] map)
@@ -60,7 +60,7 @@ public class AStarWeighted : IPathFinder
                 {
                     costs[neighbour] = costs[current] + edgeCost;
                     origins[neighbour] = current;
-                    int priority = costs[current] + edgeCost + heuristicsFunction;
+                    int priority = costs[neighbour] + heuristicsFunction;
                     queue.Enqueue(neighbour, priority);
                 }
                 
