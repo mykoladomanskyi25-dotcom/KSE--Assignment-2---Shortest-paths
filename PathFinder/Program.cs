@@ -24,13 +24,13 @@ var start = new Point(0,0);
 var destination = new Point(optionsToGenerate.Width - 2,optionsToGenerate.Height - 2);
 
 var bfs = new BreadthFirstSearch();
-var (path, nodesVisited) = bfs.FindPath(map!, start, destination);
+var (path, nodesVisited) = bfs.FindPath(map, start, destination);
 
 // var dijkstra = new DijkstraShortestPath();
-// var (path, nodesVisited) = dijkstra.FindPath(map!, start, destination);
+// var (path, nodesVisited) = dijkstra.FindPath(map, start, destination);
 
 // var astar = new AStarWeighted();
-// var (path, nodesVisited) = astar.FindPath(map!, start, destination);
+// var (path, nodesVisited) = astar.FindPath(map, start, destination);
 
 new MapPrinter().Print(map, path);
 
